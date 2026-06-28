@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/preview.png" alt="AltaySec LLM Security Lab" width="100%" />
+  <!-- <img src="assets/preview.png" alt="AltaySec LLM Security Lab" width="100%" /> -->
   
   <br/>
   
@@ -8,7 +8,7 @@
   **Yapay Zeka Sistemleri İçin Uygulamalı Güvenlik (CTF) Laboratuvarı**
 
   [![Docker](https://img.shields.io/badge/Docker-Enabled-blue?logo=docker&logoColor=white)](https://www.docker.com/)
-  [![Node.js](https://img.shields.io/badge/Node.js-Backend-43853D?logo=node.js&logoColor=white)](https://nodejs.org/)
+  [![Node.js](https://img.shields.io/badge/Node.js-Backend-43853D?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
   [![Nginx](https://img.shields.io/badge/Nginx-Proxy-009639?logo=nginx&logoColor=white)](https://nginx.org/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
