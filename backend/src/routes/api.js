@@ -19,7 +19,8 @@ router.get('/challenges', (_req, res) => {
     subtitle:    c.subtitle,
     description: c.description,
     objective:   c.objective,
-    difficulty:  c.difficulty
+    difficulty:  c.difficulty,
+    hintCount:   c.hints.length
   }));
   res.json(meta);
 });

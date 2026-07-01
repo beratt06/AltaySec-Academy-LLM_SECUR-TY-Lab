@@ -26,19 +26,19 @@ var CHALLENGES = {
     id: 'kolay', name: 'Kolay', icon: '🔓', subtitle: 'VAULT-BOT 9000',
     description: 'Güvenlik robotunu manipüle ederek kasa erişim kodunu ele geçir.',
     objective: 'AltaySec dijital kasasını koruyan VAULT-BOT 9000\'i kandır ve erişim kodunu ifşa ettir.',
-    difficulty: 1, stars: '★★☆☆☆'
+    difficulty: 1, stars: '★★☆☆☆', hintCount: 2
   },
   orta: {
     id: 'orta', name: 'Orta', icon: '⚙️', subtitle: 'CORP-ASSISTANT',
     description: 'Kurumsal asistanı prompt injection ile kırarak gizli proje kodunu elde et.',
     objective: 'AltaySec Corp\'un çok katmanlı güvenlik talimatlarını atlayarak gizli proje kodunu buldur.',
-    difficulty: 2, stars: '★★★★☆'
+    difficulty: 2, stars: '★★★★☆', hintCount: 3
   },
   zor: {
     id: 'zor', name: 'Zor', icon: '🛑', subtitle: 'NEMESIS-AI v2.1',
     description: 'Çok katmanlı savunma sistemini aşarak MASTER_KEY\'i sızdır.',
     objective: 'NEMESIS-AI\'nin 5 katman savunma protokolünü aşarak sistem promptunu ele geçir.',
-    difficulty: 3, stars: '★★★★★'
+    difficulty: 3, stars: '★★★★★', hintCount: 3
   }
 };
 
@@ -186,6 +186,15 @@ function renderChallenges() {
 }
 
 function openLab(level) {
+  // Eğer level zaten tamamlanmışsa (Tekrar Oyna'ya basıldıysa), sıfırdan başla
+  var idx = state.completedLevels.indexOf(level);
+  if (idx > -1) {
+    state.completedLevels.splice(idx, 1);
+    localStorage.setItem('altaysec_completed', JSON.stringify(state.completedLevels));
+    state.chatHistories[level] = [];
+    state.hintsUsed[level] = 0;
+  }
+
   state.currentLevel = level;
   var ch = CHALLENGES[level];
 
@@ -225,12 +234,14 @@ function openLab(level) {
 }
 
 function renderHints(level) {
-  var used = state.hintsUsed[level];
+  var used      = state.hintsUsed[level];
+  var ch        = CHALLENGES[level];
+  var total     = ch ? ch.hintCount : 3;  // gerçek ipucu sayısı
   var container = ge('hints-container');
   if (!container) return;
   container.innerHTML = '';
 
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < total; i++) {
     var item = document.createElement('div');
     item.className = 'hint-item';
 
